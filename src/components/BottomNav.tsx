@@ -12,14 +12,19 @@ function BottomNav() {
     currentlyPlaying: { infos, song },
     play,
     pause,
-    isPlaying
+    isPlaying,
   } = useMusic();
 
   return (
     <div className="fixed flex flex-col justify-center items-center bottom-[20px] left-4 right-4">
       <IconContext.Provider value={{ size: "28" }}>
-        {song && infos && (
-          <div key={infos.songName} className="grid grid-cols-8 items-center p-2 min-w-[400px] mb-2 rounded-2xl text-white bg-[#fff]/5 backdrop-blur-[50px]">
+        <div
+          key={infos?.songName}
+          className={`${
+            song ? "opacity-100" : "opacity-0"
+          } grid grid-cols-8 items-center p-2 min-w-[400px] mb-2 rounded-2xl text-white bg-[#fff]/5 backdrop-blur-[50px] transition-opacity duration-500`}
+        >
+          {infos && (
             <Image
               src={infos.cover}
               alt={`${infos.songName}`}
@@ -27,18 +32,18 @@ function BottomNav() {
               height={70}
               className="col-start-1 col-span-2 rounded-xl object-cover"
             />
-            <div className="col-start-3 col-span-5 flex flex-col">
-              <h3>{infos.songName}</h3>
-              <small>{infos.author}</small>
-            </div>
-            <button
-              onClick={() => isPlaying ? pause() : play()}
-              className="col-start-8 bg-white rounded-full flex justify-center items-center text-primary w-[40px] h-[40px]"
-            >
-              {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
-            </button>
+          )}
+          <div className="col-start-3 col-span-5 flex flex-col">
+            <h3>{infos?.songName}</h3>
+            <small>{infos?.author}</small>
           </div>
-        )}
+          <button
+            onClick={() => (isPlaying ? pause() : play())}
+            className="col-start-8 bg-white rounded-full flex justify-center items-center text-primary w-[40px] h-[40px]"
+          >
+            {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
+          </button>
+        </div>
         <div className="flex flex-row justify-evenly bg-[#fff]/5 backdrop-blur-[50px] min-w-[420px] rounded-xl">
           <button className="w-[70px] h-[70px] flex items-center justify-center text-white">
             <BiHomeAlt />
