@@ -7,10 +7,10 @@ import RecentlyPlayed from "@/components/RecentlyPlayed";
 import { useMusic } from "@/stores/useMusic";
 
 export default function Home() {
-  const { isPlaying } = useMusic()
+  const { currentlyPlaying: { infos, song } } = useMusic()
 
   return (
-    <main className={`${isPlaying ? "mb-[200px]" : "mb-[100px]"}`}>
+    <main className={`${infos && song ? "mb-[200px]" : "mb-[100px]"}`}>
       <Navbar />
       <Discover />
       <RecentlyPlayed />
