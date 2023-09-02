@@ -16,7 +16,7 @@ function BottomNav() {
   } = useMusic();
 
   return (
-    <div className="fixed flex flex-col justify-center items-center bottom-[20px] left-4 right-4">
+    <div className="fixed flex flex-col justify-center items-center bottom-0 left-4 right-4">
       <IconContext.Provider value={{ size: "28" }}>
         <div
           key={infos?.songName}

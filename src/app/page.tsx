@@ -10,7 +10,7 @@ export default function Home() {
   const { currentlyPlaying: { infos, song } } = useMusic()
 
   return (
-    <main className={`${infos && song ? "mb-[200px]" : "mb-[100px]"}`}>
+    <main className={`${infos && song ? "mb-[200px]" : "mb-[100px]"} overflow-hidden`}>
       <Navbar />
       <Discover />
       <RecentlyPlayed />
